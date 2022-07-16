@@ -4,15 +4,24 @@
 # link to documention in atlassian
 '''
 Improvements:
-1) command line args for instance name + random name generator
+1) command line args for instance name os.argv
 2) Change size of ebs volume (can do this through custom ami)
 3) User data script for installing datadog agent
+    soruce file via bash script . ~/.sandbox.conf.sh
+    os.getenv those variables that you can put into the install script
 Ideas:
 Be able to create config files for instances, some generic ones out of the box
-
 '''
-
 import boto3
+import subprocess
+import os
+
+subprocess.run([".~/.sandbox.conf.sh"])
+DD_API_KEY = os.getenviron[DD_API_KEY]
+DD_APP_KEY = os.getenviron[DD_APP_KEY]
+
+print(DD_APP_KEY)
+print(DD_API_KEY)
 
 # CHANGE THESE AS NEEDED
 INSTANCE_NAME = 'generic_sandbox'
