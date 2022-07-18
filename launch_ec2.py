@@ -2,26 +2,16 @@
 
 # Eric Kufta | Datadog
 # link to documention in atlassian
-'''
-Improvements:
-1) command line args for instance name os.argv
-2) Change size of ebs volume (can do this through custom ami)
-3) User data script for installing datadog agent
-    soruce file via bash script . ~/.sandbox.conf.sh
-    os.getenv those variables that you can put into the install script
-Ideas:
-Be able to create config files for instances, some generic ones out of the box
-'''
+
 import boto3
 
 # CHANGE THESE AS NEEDED
 INSTANCE_NAME = 'generic_sandbox'
 SECURITY_GROUP_ID = 'sg-0348948a9f025a14e' # Optionally use your own custom security group 
-KEY_PAIR_NAME = 'eric.kufta'
+KEY_PAIR_NAME = 'user.name' # first.last
 INSTANCE_TYPE = 't3.small' # t3.medium t3.large !!-please do not over-provision-!!
 AMI_ID = 'ami-005de95e8ff495156' # Ubuntu 18.04 | ami-041306c411c38a789 for Windows 2019 Base
 # USER_DATA = DD_AGENT_MAJOR_VERSION=7 DD_API_KEY={DD_API_KEY} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-
 
 # Keep these unless you know what you are doing
 AWS_REGION = "us-east-1"
