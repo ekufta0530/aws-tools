@@ -13,23 +13,15 @@ Ideas:
 Be able to create config files for instances, some generic ones out of the box
 '''
 import boto3
-import subprocess
-import os
-
-subprocess.run([".~/.sandbox.conf.sh"])
-DD_API_KEY = os.getenviron[DD_API_KEY]
-DD_APP_KEY = os.getenviron[DD_APP_KEY]
-
-print(DD_APP_KEY)
-print(DD_API_KEY)
 
 # CHANGE THESE AS NEEDED
 INSTANCE_NAME = 'generic_sandbox'
 SECURITY_GROUP_ID = 'sg-0348948a9f025a14e' # Optionally use your own custom security group 
 KEY_PAIR_NAME = 'eric.kufta'
-INSTANCE_TYPE = 't3.small' # t3.medium t3.large !!please do not over-provision!!
+INSTANCE_TYPE = 't3.small' # t3.medium t3.large !!-please do not over-provision-!!
 AMI_ID = 'ami-005de95e8ff495156' # Ubuntu 18.04 | ami-041306c411c38a789 for Windows 2019 Base
-# USER_DATA = Script to install agent automatically
+# USER_DATA = DD_AGENT_MAJOR_VERSION=7 DD_API_KEY={DD_API_KEY} DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
+
 
 # Keep these unless you know what you are doing
 AWS_REGION = "us-east-1"
@@ -71,7 +63,7 @@ def create_instance():
                      'Value': KEY_PAIR_NAME
                     },
                     {
-                     'Key': 'source', #for internal tracking of usage
+                     'Key': 'source', # for internal tracking of usage
                      'Value': 'quickstartscript'
                     },
              ]

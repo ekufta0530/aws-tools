@@ -4,16 +4,15 @@ import boto3
 
 AWS_REGION = "us-east-1"
 EC2_RESOURCE = boto3.resource('ec2', region_name=AWS_REGION)
-INSTANCE_STATE = 'running'
+INSTANCE_STATE = ['running', 'stopped']
 KEY_PAIR_NAME = 'eric.kufta'
 
 instances = EC2_RESOURCE.instances.filter(
     Filters=[
         {
             'Name': 'instance-state-name',
-            'Values': [
+            'Values':
                 INSTANCE_STATE
-            ]
         },
         {
             'Name': 'tag:created_by',
@@ -27,4 +26,4 @@ instances = EC2_RESOURCE.instances.filter(
 print(f'Instances in state "{INSTANCE_STATE}":')
 user_instances=[i for i in instances]
 for instance in instances:
-    print(f'  - Instance ID: {instance.id}')
+    print(f' - {instance.id} | {instance.state["Name"]}')

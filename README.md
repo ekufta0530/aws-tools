@@ -1,2 +1,2 @@
 # aws-tools
-Some command line tools for various tasks with sandbox account
+Some command line tools to launch, list and terminate Ec2s
